@@ -67,19 +67,20 @@ def withdraw(amount):
         print("Error: Please try again.")
 
 
-while True:
-    choice = input(menu)
+if __name__ == "__main__":
+    while True:
+        choice = input(menu)
 
-    if choice == "d":
-        amount = input("Amount to deposit: ")
-        deposit(amount)
-    elif choice == "w":
-        amount = input("Amount to withdraw: ")
-        withdraw(amount)
-    elif choice == "s":
-        for s in statement:
-            print(s)
-    elif choice == "q":
-        break
-    else:
-        print("Invalid operation, please try again.")
+        if choice == "d":
+            amount = input("Amount to deposit: ")
+            deposit(amount)
+        elif choice == "w":
+            amount = input("Amount to withdraw: ")
+            withdraw(amount)
+        elif choice == "s":
+            for s in statement:
+                print(s)
+        elif choice == "q":
+            break
+        else:
+            print("Invalid operation, please try again.")
