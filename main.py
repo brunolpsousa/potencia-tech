@@ -23,8 +23,8 @@ def deposit(amount):
         message = f"Deposit of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
         print(message)
     except ValueError as e:
-        if 'could not convert string to float' in str(e):
-            return print('Error: Invalid amount')
+        if "could not convert string to float" in str(e):
+            return print("Error: Invalid amount")
         print("Error:", e)
     except Exception:
         print("Error: Please try again.")
@@ -40,14 +40,14 @@ def withdraw(amount):
         if amount > limit:
             raise ValueError("Amount surpasses limit")
 
-        global balance
-        if amount > balance:
-            raise ValueError("Insufficient funds")
-
         global withdraw_count
         global WITHDRAW_LIMIT
         if withdraw_count >= WITHDRAW_LIMIT:
             raise ValueError("Withdraw limit exceeded")
+
+        global balance
+        if amount > balance:
+            raise ValueError("Insufficient funds")
 
         global statement
         balance -= amount
@@ -55,8 +55,8 @@ def withdraw(amount):
         message = f"Withdraw of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
         print(message)
     except ValueError as e:
-        if 'could not convert string to float' in str(e):
-            return print('Error: Invalid amount')
+        if "could not convert string to float" in str(e):
+            return print("Error: Invalid amount")
         print("Error:", e)
     except Exception:
         print("Error: Please try again.")
