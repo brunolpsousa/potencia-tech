@@ -8,7 +8,7 @@ menu = """
 
 balance = 0
 limit = 500
-statement = ["Balance: R$ 0.00"]
+statement = []
 withdraw_count = 0
 WITHDRAW_LIMIT = 3
 
@@ -78,6 +78,9 @@ if __name__ == "__main__":
             amount = input("Amount to withdraw: ")
             withdraw(amount)
         elif choice == "s":
+            if len(statement) < 1:
+                print(f"Balance: R$ {balance:.2f}")
+                continue
             for s in statement:
                 print(s)
         elif choice == "q":
