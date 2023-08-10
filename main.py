@@ -21,8 +21,8 @@ def deposit(amount):
         global balance
         balance += amount
         print(f"Deposit of {amount} made. New balance: {balance}")
-    except Exception as e:
-        print(e)
+    except Exception:
+        print("Error: please try again.")
 
 
 while True:
