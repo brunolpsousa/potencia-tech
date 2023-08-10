@@ -1,28 +1,29 @@
 menu = """
 
-[d] Depositar
-[s] Sacar
-[e] Extrato
-[q] Sair
+[d] Deposit
+[w] Withdraw
+[s] Statement
+[q] Quit
 
 =>"""
 
-saldo = 0
-limite = 500
-extrato = ""
-numero_saques = 0
-LIMITE_SAQUES = 3
+balance = 0
+limit = 500
+statement = ""
+withdraw_count = 0
+WITHDRAW_LIMIT = 3
+
 
 while True:
-    opcao = input(menu)
+    choice = input(menu)
 
-    if opcao == "d":
-        print("Depósito")
-    elif opcao == "s":
-        print("Saque")
-    elif opcao == "e":
+    if choice == "d":
+        amount = input("Amount to deposit: ")
+    elif choice == "w":
+        amount = input("Amount to withdraw: ")
+    elif choice == "s":
         print("Extrato")
-    elif opcao == "q":
+    elif choice == "q":
         break
     else:
-        print("Operação inválida, por favor selecione novamente a operação desejada.")
+        print("Invalid operation, please try again.")
