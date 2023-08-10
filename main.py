@@ -23,9 +23,9 @@ def deposit(amount):
         global balance
 
         balance += amount
-        message = f"Deposit of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
-        statement.append(message)
-        print(message)
+        msg = f"Deposit of R$ {amount:.2f} made. Balance: R$ {balance:.2f}"
+        statement.append(msg)
+        print(msg)
     except ValueError as e:
         if "could not convert string to float" in str(e):
             return print("Error: Invalid amount")
@@ -56,9 +56,9 @@ def withdraw(amount):
         global statement
         balance -= amount
         withdraw_count += 1
-        message = f"Withdraw of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
-        statement.append(message)
-        print(message)
+        msg = f"Withdraw of R$ {amount:.2f} made. Balance: R$ {balance:.2f}"
+        statement.append(msg)
+        print(msg)
     except ValueError as e:
         if "could not convert string to float" in str(e):
             return print("Error: Invalid amount")
