@@ -16,7 +16,7 @@ WITHDRAW_LIMIT = 3
 def deposit(amount):
     try:
         amount = float(amount)
-        if amount <= 0:
+        if amount < 0.01:
             raise ValueError("Invalid amount")
 
         global statement
@@ -37,7 +37,7 @@ def deposit(amount):
 def withdraw(amount):
     try:
         amount = float(amount)
-        if amount <= 0:
+        if amount < 0.01:
             raise ValueError("Invalid amount")
 
         global limit
