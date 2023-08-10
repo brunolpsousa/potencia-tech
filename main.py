@@ -8,7 +8,7 @@ menu = """
 
 balance = 0
 limit = 500
-statement = ""
+statement = ["Balance: R$ 0.00"]
 withdraw_count = 0
 WITHDRAW_LIMIT = 3
 
@@ -18,9 +18,13 @@ def deposit(amount):
         amount = float(amount)
         if amount <= 0:
             raise ValueError("Invalid amount")
+
+        global statement
         global balance
+
         balance += amount
         message = f"Deposit of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
+        statement.append(message)
         print(message)
     except ValueError as e:
         if "could not convert string to float" in str(e):
@@ -53,6 +57,7 @@ def withdraw(amount):
         balance -= amount
         withdraw_count += 1
         message = f"Withdraw of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
+        statement.append(message)
         print(message)
     except ValueError as e:
         if "could not convert string to float" in str(e):
@@ -72,7 +77,8 @@ while True:
         amount = input("Amount to withdraw: ")
         withdraw(amount)
     elif choice == "s":
-        print("Extrato")
+        for s in statement:
+            print(s)
     elif choice == "q":
         break
     else:
