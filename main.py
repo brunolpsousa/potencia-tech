@@ -24,6 +24,10 @@ def deposit(amount):
             f"Deposit of R$ {amount:.2f} made. " +
             f"New balance: R$ {balance:.2f}"
         )
+    except ValueError as e:
+        if 'could not convert string to float' in str(e):
+            return print('Error: Invalid amount')
+        print("Error:", e)
     except Exception:
         print("Error: Please try again.")
 
@@ -54,6 +58,10 @@ def withdraw(amount):
             f"Withdraw of R$ {amount:.2f} made. " +
             f"New balance: R$ {balance:.2f}"
         )
+    except ValueError as e:
+        if 'could not convert string to float' in str(e):
+            return print('Error: Invalid amount')
+        print("Error:", e)
     except Exception:
         print("Error: Please try again.")
 
