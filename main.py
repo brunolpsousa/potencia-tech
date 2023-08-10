@@ -69,7 +69,7 @@ def withdraw(amount):
 
 if __name__ == "__main__":
     while True:
-        choice = input(menu)
+        choice = input(menu).lower()
 
         if choice == "d":
             amount = input("Amount to deposit: ")
