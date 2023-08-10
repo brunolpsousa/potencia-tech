@@ -14,11 +14,24 @@ withdraw_count = 0
 WITHDRAW_LIMIT = 3
 
 
+def deposit(amount):
+    try:
+        amount = float(amount)
+        if amount <= 0:
+            raise ValueError("Invalid amount")
+        global balance
+        balance += amount
+        print(f"Deposit of {amount} made. New balance: {balance}")
+    except Exception as e:
+        print(e)
+
+
 while True:
     choice = input(menu)
 
     if choice == "d":
         amount = input("Amount to deposit: ")
+        deposit(amount)
     elif choice == "w":
         amount = input("Amount to withdraw: ")
     elif choice == "s":
