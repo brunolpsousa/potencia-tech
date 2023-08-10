@@ -20,7 +20,10 @@ def deposit(amount):
             raise ValueError("Invalid amount")
         global balance
         balance += amount
-        print(f"Deposit of {amount} made. New balance: {balance}")
+        print(
+            f"Deposit of R$ {amount:.2f} made. " +
+            f"New balance: R$ {balance:.2f}"
+        )
     except Exception:
         print("Error: please try again.")
 
