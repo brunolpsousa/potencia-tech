@@ -25,7 +25,37 @@ def deposit(amount):
             f"New balance: R$ {balance:.2f}"
         )
     except Exception:
-        print("Error: please try again.")
+        print("Error: Please try again.")
+
+
+def withdraw(amount):
+    try:
+        amount = float(amount)
+        if amount <= 0:
+            raise ValueError("Invalid amount")
+
+        global limit
+        if amount > limit:
+            raise ValueError("Amount surpasses limit")
+
+        global balance
+        if amount > balance:
+            raise ValueError("Insufficient funds")
+
+        global withdraw_count
+        global WITHDRAW_LIMIT
+        if withdraw_count >= WITHDRAW_LIMIT:
+            raise ValueError("Withdraw limit exceeded")
+
+        global statement
+        balance -= amount
+        withdraw_count += 1
+        print(
+            f"Withdraw of R$ {amount:.2f} made. " +
+            f"New balance: R$ {balance:.2f}"
+        )
+    except Exception:
+        print("Error: Please try again.")
 
 
 while True:
@@ -36,6 +66,7 @@ while True:
         deposit(amount)
     elif choice == "w":
         amount = input("Amount to withdraw: ")
+        withdraw(amount)
     elif choice == "s":
         print("Extrato")
     elif choice == "q":
