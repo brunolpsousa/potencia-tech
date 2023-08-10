@@ -1,11 +1,10 @@
 menu = """
-
 [d] Deposit
 [w] Withdraw
 [s] Statement
 [q] Quit
 
-=>"""
+=> """
 
 balance = 0
 limit = 500
