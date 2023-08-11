@@ -23,7 +23,7 @@ def deposit(amount):
         global balance
 
         balance += amount
-        msg = f"Deposit of R$ {amount:.2f} made. Balance: R$ {balance:.2f}"
+        msg = f"Deposit of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
         statement.append(msg)
         print(msg)
     except ValueError as e:
@@ -56,7 +56,7 @@ def withdraw(amount):
         global statement
         balance -= amount
         withdraw_count += 1
-        msg = f"Withdraw of R$ {amount:.2f} made. Balance: R$ {balance:.2f}"
+        msg = f"Withdraw of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
         statement.append(msg)
         print(msg)
     except ValueError as e:
@@ -78,11 +78,9 @@ if __name__ == "__main__":
             amount = input("Amount to withdraw: ")
             withdraw(amount)
         elif choice == "s":
-            if len(statement) < 1:
-                print(f"Balance: R$ {balance:.2f}")
-                continue
             for s in statement:
                 print(s)
+            print(f"Balance: R$ {balance:.2f}")
         elif choice == "q":
             break
         else:
