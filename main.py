@@ -19,30 +19,26 @@ def deposit(balance, amount, statement):
     return balance
 
 
-def withdraw(amount):
+def withdraw(*, balance, amount, statement, limit, withdraw_count, WITHDRAW_LIMIT):
     amount = float(amount)
     if amount < 0.01:
         raise ValueError("Invalid amount")
 
-    global limit
     if amount > limit:
         raise ValueError("Amount surpasses limit")
 
-    global withdraw_count
-    global WITHDRAW_LIMIT
     if withdraw_count >= WITHDRAW_LIMIT:
         raise ValueError("Withdraw limit exceeded")
 
-    global balance
     if amount > balance:
         raise ValueError("Insufficient funds")
 
-    global statement
     balance -= amount
     withdraw_count += 1
     msg = f"Withdraw of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
     statement.append(msg)
     print(msg)
+    return balance, withdraw_count
 
 
 def main():
@@ -61,7 +57,14 @@ def main():
                 balance = deposit(balance, amount, statement)
             elif choice == "w":
                 amount = input("Amount to withdraw: ")
-                withdraw(amount)
+                balance, withdraw_count = withdraw(
+                    balance=balance,
+                    amount=amount,
+                    statement=statement,
+                    limit=limit_per_withdraw,
+                    withdraw_count=withdraw_count,
+                    WITHDRAW_LIMIT=WITHDRAW_LIMIT,
+                )
             elif choice == "s":
                 for s in statement:
                     print(s)
