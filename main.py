@@ -7,19 +7,16 @@ menu = """
 => """
 
 
-
-def deposit(amount):
+def deposit(balance, amount, statement):
     amount = float(amount)
     if amount < 0.01:
         raise ValueError("Invalid amount")
-
-    global statement
-    global balance
 
     balance += amount
     msg = f"Deposit of R$ {amount:.2f} made. New balance: R$ {balance:.2f}"
     statement.append(msg)
     print(msg)
+    return balance
 
 
 def withdraw(amount):
@@ -61,7 +58,7 @@ def main():
 
             if choice == "d":
                 amount = input("Amount to deposit: ")
-                deposit(amount)
+                balance = deposit(balance, amount, statement)
             elif choice == "w":
                 amount = input("Amount to withdraw: ")
                 withdraw(amount)
