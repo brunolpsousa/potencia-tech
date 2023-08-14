@@ -41,6 +41,12 @@ def withdraw(*, balance, amount, statement, limit, withdraw_count, WITHDRAW_LIMI
     return balance, withdraw_count
 
 
+def print_statement(balance, /, *, statement):
+    for s in statement:
+        print(s)
+    print(f"Balance: R$ {balance:.2f}")
+
+
 def main():
     balance = 0
     limit_per_withdraw = 500
@@ -66,9 +72,7 @@ def main():
                     WITHDRAW_LIMIT=WITHDRAW_LIMIT,
                 )
             elif choice == "s":
-                for s in statement:
-                    print(s)
-                print(f"Balance: R$ {balance:.2f}")
+                print_statement(balance, statement=statement)
             elif choice == "q":
                 break
             else:
