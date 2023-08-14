@@ -6,11 +6,6 @@ menu = """
 
 => """
 
-balance = 0
-limit = 500
-statement = []
-withdraw_count = 0
-WITHDRAW_LIMIT = 3
 
 
 def deposit(amount):
@@ -54,6 +49,12 @@ def withdraw(amount):
 
 
 def main():
+    balance = 0
+    limit_per_withdraw = 500
+    statement = []
+    withdraw_count = 0
+    WITHDRAW_LIMIT = 3
+
     while True:
         try:
             choice = input(menu).lower()
