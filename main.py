@@ -2,6 +2,7 @@ menu = """
 [d] Deposit
 [w] Withdraw
 [s] Statement
+[u] Create user
 [q] Quit
 
 => """
@@ -49,6 +50,23 @@ def print_statement(balance, /, *, statement):
     print(f"Balance: R$ {balance:.2f}")
 
 
+def create_user(users):
+    cpf = input("CPF: ")
+    for user in users:
+        if user["CPF"] == cpf:
+            raise Exception("An user with this CPF already exists.")
+    new_user = {
+        "CPF": cpf,
+        "name": input("Name: "),
+        "birth_date": input("Birth date (dd-mm-yyyy): "),
+        "address": input("Address (street, n., neighborhood, city/state): "),
+    }
+    users.append(new_user)
+    print("User created successfully:\n")
+    for k, v in new_user.items():
+        print(f"{k}: {v}")
+
+
 def main():
     statement = []
     balance = 0
@@ -56,6 +74,8 @@ def main():
     limit_per_withdraw = 500
     withdraw_count = 0
     WITHDRAW_LIMIT = 3
+
+    users = []
 
     while True:
         try:
@@ -73,6 +93,8 @@ def main():
                 )
             elif choice == "s":
                 print_statement(balance, statement=statement)
+            elif choice == "u":
+                create_user(users)
             elif choice == "q":
                 break
             else:
