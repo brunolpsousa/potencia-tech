@@ -3,6 +3,7 @@ menu = """
 [w] Withdraw
 [s] Statement
 [u] Create user
+[a] Create account
 [q] Quit
 
 => """
@@ -67,6 +68,24 @@ def create_user(users):
         print(f"{k}: {v}")
 
 
+def create_account(users, AG, account_index, accounts):
+    cpf = input("CPF: ")
+    for user in users:
+        if user["CPF"] == cpf:
+            new_account = {
+                "Ag": AG,
+                "Account number": account_index + 1,
+                "User": user["name"],
+                "CPF": cpf,
+            }
+            accounts.append(new_account)
+            print("Account created successfully:\n")
+            for key, value in new_account.items():
+                print(f"{key}: {value}")
+            return account_index + 1
+    raise Exception("No user with this CPF found.")
+
+
 def main():
     statement = []
     balance = 0
@@ -76,6 +95,9 @@ def main():
     WITHDRAW_LIMIT = 3
 
     users = []
+    accounts = []
+    AG = "0001"
+    account_index = 0
 
     while True:
         try:
@@ -95,6 +117,8 @@ def main():
                 print_statement(balance, statement=statement)
             elif choice == "u":
                 create_user(users)
+            elif choice == "a":
+                account_index = create_account(users, AG, account_index, accounts)
             elif choice == "q":
                 break
             else:
