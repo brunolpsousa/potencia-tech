@@ -7,8 +7,9 @@ menu = """
 => """
 
 
-def deposit(balance, amount, statement):
-    amount = float(amount)
+def deposit(balance, statement):
+    amount = float(input("Amount to deposit: "))
+
     if amount < 0.01:
         raise ValueError("Invalid amount")
 
@@ -19,8 +20,9 @@ def deposit(balance, amount, statement):
     return balance
 
 
-def withdraw(*, balance, amount, statement, limit, withdraw_count, WITHDRAW_LIMIT):
-    amount = float(amount)
+def withdraw(*, balance, statement, limit, withdraw_count, WITHDRAW_LIMIT):
+    amount = float(input("Amount to withdraw: "))
+
     if amount < 0.01:
         raise ValueError("Invalid amount")
 
@@ -48,9 +50,10 @@ def print_statement(balance, /, *, statement):
 
 
 def main():
-    balance = 0
-    limit_per_withdraw = 500
     statement = []
+    balance = 0
+
+    limit_per_withdraw = 500
     withdraw_count = 0
     WITHDRAW_LIMIT = 3
 
@@ -59,13 +62,10 @@ def main():
             choice = input(menu).lower()
 
             if choice == "d":
-                amount = input("Amount to deposit: ")
-                balance = deposit(balance, amount, statement)
+                balance = deposit(balance, statement)
             elif choice == "w":
-                amount = input("Amount to withdraw: ")
                 balance, withdraw_count = withdraw(
                     balance=balance,
-                    amount=amount,
                     statement=statement,
                     limit=limit_per_withdraw,
                     withdraw_count=withdraw_count,
@@ -82,8 +82,8 @@ def main():
                 print("Error: Invalid amount")
                 continue
             print("Error:", e)
-        except Exception:
-            print("Error: Please try again.")
+        except Exception as e:
+            print("Error:", e)
 
 
 if __name__ == "__main__":
